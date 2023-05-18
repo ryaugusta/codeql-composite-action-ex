@@ -20,7 +20,7 @@ runs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-        languages: ['${{ inputs.languages }}']
+        languages: [ '${{ inputs.language }}' ]
         queries: ${{ inputs.queries }}
         
     # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
