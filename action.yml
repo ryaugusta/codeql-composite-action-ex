@@ -9,7 +9,7 @@ inputs:
      description: 'query packs, comma separated'
      required: false
      default: security-extended,security-and-quality
-   manualBuild:
+   manualbuild:
       description: 'If you need to manual build provide it here'
       required: false
   
@@ -20,18 +20,18 @@ runs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-        languages: [${{ inputs.languages }}]
+        languages: ['${{ inputs.languages }}']
         queries: ${{ inputs.queries }}
         
     # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
-      if: ${{ inputs.autobuild == '' }}
+      if: ${{ inputs.manual-build == '' }}
       uses: github/codeql-action/autobuild@v2
    
    - name: Manual Build
-     if: ${{ inputs.autobuild != '' }}
-     run: ${{ inputs.manualBuild }}
+     if: ${{ inputs.manualbuild != '' }}
+     run: ${{ inputs.manualbuild }}
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
