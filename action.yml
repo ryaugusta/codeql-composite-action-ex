@@ -1,0 +1,39 @@
+name: "CodeQL Composite Action"
+description: 'CodeQL Composite Action for Reusability'
+
+inputs:
+  language: 
+    description: 'language to scan'
+    required: true
+   queries:
+     description: 'query packs, comma separated'
+     required: false
+     default: security-extended,security-and-quality
+   manualBuild:
+      description: 'If you need to manual build provide it here'
+      required: false
+  
+runs:
+  using: "composite"
+    steps:
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: [${{ inputs.languages }}]
+        queries: ${{ inputs.queries }}
+        
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
+    # If this step fails, then you should remove it and run the build manually (see below)
+    - name: Autobuild
+      if: ${{ inputs.autobuild == '' }}
+      uses: github/codeql-action/autobuild@v2
+   
+   - name: Manual Build
+     if: ${{ inputs.autobuild != '' }}
+     run: ${{ inputs.manualBuild }}
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{inputs.language}}"
