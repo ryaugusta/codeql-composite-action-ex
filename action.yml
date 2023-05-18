@@ -28,11 +28,12 @@ runs:
     - name: Autobuild
       if: ${{ inputs.manual-build == '' }}
       uses: github/codeql-action/autobuild@v2
-   
-   - name: Manual Build
-     if: ${{ inputs.manualbuild != '' }}
-     run: ${{ inputs.manualbuild }}
-
+    
+    - name: Manual Build
+      if: ${{ inputs.manualbuild != '' }}
+      run: ${{ inputs.manualbuild }}
+      shell: bash
+    
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
