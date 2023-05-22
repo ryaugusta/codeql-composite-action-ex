@@ -45,7 +45,7 @@ jobs:
     - uses: ryaugusta/codeql-composite-action-ex@main
       with:
         language: ${{ inputs.language }}
+        manualbuild: ${{ inputs.build-command }}
 #         queries:
-        manualbuild: ''
     
     
