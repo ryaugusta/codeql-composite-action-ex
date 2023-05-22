@@ -1,4 +1,4 @@
-name: Manual CodeQL With Composite
+name: CodeQL With Composite - Enter Lang 
 
 on: 
   workflow_dispatch:
