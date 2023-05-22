@@ -14,6 +14,10 @@ on:
         - go
         - python
         - ruby
+      build-command:
+        type: string
+        description: provide manual build step command
+        default: ''
       
 #   push:
 #     branches: [ "main" ]
@@ -42,6 +46,6 @@ jobs:
       with:
         language: ${{ inputs.language }}
 #         queries:
-#         manualbuild: 
+        manualbuild: ''
     
     
