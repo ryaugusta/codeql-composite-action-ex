@@ -12,6 +12,7 @@ inputs:
    manualbuild:
       description: 'If you need to manual build provide it here'
       required: false
+      default: ''
   
 runs:
   using: "composite"
