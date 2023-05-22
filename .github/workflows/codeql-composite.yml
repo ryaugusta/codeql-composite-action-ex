@@ -1,3 +1,5 @@
+# This would either be template or stored in .github for easy-reusability
+
 name: Manual CodeQL With Composite
 
 on: 
