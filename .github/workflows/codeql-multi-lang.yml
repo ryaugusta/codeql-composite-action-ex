@@ -1,0 +1,39 @@
+name: Manual CodeQL With Composite
+
+on: 
+  workflow_dispatch:
+    inputs:
+      language: 
+        type: string
+        description: Enter language(s) - comma separated
+      
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     # The branches below must be a subset of the branches above
+#     branches: [ "main" ]
+#   schedule:
+#     - cron: '28 12 * * 0'
+
+jobs:
+  codeql-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ '${{ inputs.language }}' ]
+        
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ryaugusta/codeql-composite-action-ex@main
+      with:
+        language: ${{ inputs.language }}
+#         queries:
+#         manualbuild: 
+    
+    
